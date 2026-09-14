@@ -147,7 +147,7 @@ if __name__ == "__main__":
         await site.start()
 
     print("Bot ishga tushdi...")
-   if __name__ == "__main__":
+if __name__ == "__main__":
     import asyncio
     from aiohttp import web
     import os
@@ -168,4 +168,4 @@ if __name__ == "__main__":
         print("Bot ishga tushdi va veb-server yondi...")
         await dp.start_polling(bot)
 
-    asyncio.run(main())
+    asyncio.run(main())   
