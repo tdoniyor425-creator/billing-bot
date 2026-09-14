@@ -133,3 +133,26 @@ if __name__ == "__main__":
     import asyncio
     print("Bot ishga tushdi...")
     asyncio.run(dp.start_polling(bot))
+    # Render port talab qilgani uchun kichik veb-server
+from aiohttp import web
+import os
+
+async def handle(request):
+    return web.Response(text="Bot is running!")
+
+app = web.Application()
+app.router.add_get("/", handle)
+
+async def web_server():
+    runner = web.AppRunner(app)
+    await runner.setup()
+    port = int(os.environ.get("PORT", 10000))
+    site = web.TCPSite(runner, "0.0.0.0", port)
+    await site.start()
+    if __name__ == "__main__":
+    import asyncio
+    print("Bot ishga tushdi...")
+    
+    loop = asyncio.get_event_loop()
+    loop.create_task(web_server())
+    loop.run_until_complete(dp.start_polling(bot))
