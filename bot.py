@@ -147,7 +147,7 @@ if __name__ == "__main__":
         await site.start()
 
     print("Bot ishga tushdi...")
-    if __name__ == "__main__":
+   if __name__ == "__main__":
     import asyncio
     from aiohttp import web
     import os
@@ -159,7 +159,6 @@ if __name__ == "__main__":
     app.router.add_get("/", handle)
 
     async def main():
-        # Veb-serverni ishga tushiramiz
         runner = web.AppRunner(app)
         await runner.setup()
         port = int(os.environ.get("PORT", 10000))
@@ -167,8 +166,6 @@ if __name__ == "__main__":
         await site.start()
         
         print("Bot ishga tushdi va veb-server yondi...")
-        # Botni ishga tushiramiz
         await dp.start_polling(bot)
 
-    # asyncio.run orqali barchasini bitta joyda xatosiz yurgizamiz
     asyncio.run(main())
