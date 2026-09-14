@@ -147,6 +147,28 @@ if __name__ == "__main__":
         await site.start()
 
     print("Bot ishga tushdi...")
-    loop = asyncio.get_event_loop()
-    loop.create_task(web_server())
-    loop.run_until_complete(dp.start_polling(bot))
+    if __name__ == "__main__":
+    import asyncio
+    from aiohttp import web
+    import os
+
+    async def handle(request):
+        return web.Response(text="Bot is running!")
+
+    app = web.Application()
+    app.router.add_get("/", handle)
+
+    async def main():
+        # Veb-serverni ishga tushiramiz
+        runner = web.AppRunner(app)
+        await runner.setup()
+        port = int(os.environ.get("PORT", 10000))
+        site = web.TCPSite(runner, "0.0.0.0", port)
+        await site.start()
+        
+        print("Bot ishga tushdi va veb-server yondi...")
+        # Botni ishga tushiramiz
+        await dp.start_polling(bot)
+
+    # asyncio.run orqali barchasini bitta joyda xatosiz yurgizamiz
+    asyncio.run(main())
